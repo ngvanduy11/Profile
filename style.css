@@ -29,21 +29,22 @@ body::before{
     z-index:-2;
 }
 
-.container::before{
+.container.container{
+    overflow:hidden;
+}
+
+.container::after{
     content:"";
     position:absolute;
-    inset:-2px;
-    border-radius:32px;
-    background:linear-gradient(
-        45deg,
-        #00e5ff,
-        #7d5fff,
-        #ff2d95,
-        #00ff95
+    inset:0;
+    background:
+    radial-gradient(
+        circle at var(--x) var(--y),
+        rgba(255,255,255,.18),
+        transparent 180px
     );
-    z-index:-1;
-    filter:blur(18px);
-    opacity:.35;
+
+    pointer-events:none;
 }
 
 .container:hover{
