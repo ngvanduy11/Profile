@@ -1,18 +1,18 @@
 // ===== Typewriter =====
 
-const text = "Welcome to my profile ✨";
+const text="Welcome to my profile";
 
-let i = 0;
+let i=0;
 
-function typing() {
+function typing(){
 
-    if (i < text.length) {
+    if(i<text.length){
 
-        document.getElementById("bio").innerHTML += text.charAt(i);
+        document.getElementById("bio").innerHTML+=text.charAt(i);
 
         i++;
 
-        setTimeout(typing, 50);
+        setTimeout(typing,50);
 
     }
 
@@ -23,15 +23,15 @@ typing();
 
 // ===== Music =====
 
-const audio = new Audio("assets/music.mp3");
+const audio=new Audio("assets/music.mp3");
 
-audio.loop = true;
+audio.loop=true;
 
-let playing = false;
+let playing=false;
 
-document.getElementById("music").onclick = () => {
+document.getElementById("music").onclick=()=>{
 
-    if (playing){
+    if(playing){
 
         audio.pause();
 
@@ -41,7 +41,7 @@ document.getElementById("music").onclick = () => {
 
     }
 
-    playing = !playing;
+    playing=!playing;
 
 };
 
@@ -50,36 +50,39 @@ document.getElementById("music").onclick = () => {
 
 tsParticles.load("particles",{
 
-    background:{color:"transparent"},
+    background:{
+        color:"transparent"
+    },
 
     fpsLimit:60,
 
     particles:{
 
-        number:{value:80},
+        number:{
+            value:80
+        },
 
-        color:{value:"#ffffff"},
+        color:{
+            value:"#ffffff"
+        },
 
-        opacity:{value:0.3},
+        opacity:{
+            value:0.3
+        },
 
-        size:{value:2},
+        size:{
+            value:2
+        },
 
         move:{
-
             enable:true,
-
             speed:1
-
         },
 
         links:{
-
             enable:true,
-
             color:"#ffffff",
-
             opacity:0.15
-
         }
 
     }
