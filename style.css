@@ -229,3 +229,32 @@ body::before{
 }
 
 }
+#enterScreen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+    z-index:9999;
+    cursor:pointer;
+    transition:opacity .6s ease;
+}
+
+#enterScreen.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+#enterScreen h1{
+    color:#fff;
+    font-size:34px;
+    font-family:'Outfit',sans-serif;
+    letter-spacing:2px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:.4;}
+    50%{opacity:1;}
+}
