@@ -1,146 +1,49 @@
-<!DOCTYPE html><html><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Checking...</title>
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%,rgba(30,45,60,.8),transparent 60%),
-    radial-gradient(ellipse 60% 50% at 85% 110%,rgba(20,30,50,.6),transparent 55%),
-    linear-gradient(180deg,#0b0f13,#080a09 55%,#060809);
-  color:rgba(255,255,255,.88);
-  font-family:Arial,sans-serif;
-}
-.card{
-  width:min(92vw,460px);
-  padding:34px 28px;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:26px;
-  background:rgba(0,0,0,.28);
-  backdrop-filter:blur(14px);
-  text-align:center;
-  box-shadow:0 30px 80px rgba(0,0,0,.45);
-}
-.name{
-  font-family:Georgia,serif;
-  font-size:34px;
-  font-style:italic;
-  font-weight:300;
-  letter-spacing:-.03em;
-  margin-bottom:12px;
-}
-.small{
-  color:rgba(255,255,255,.48);
-  font-size:13px;
-  line-height:1.6;
-}
-.spin{
-  width:54px;
-  height:54px;
-  border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.08);
-  border-top-color:rgba(255,255,255,.7);
-  margin:0 auto 22px;
-  animation:s 1s linear infinite;
-}
-@keyframes s{to{transform:rotate(360deg)}}
-@media (max-width:640px){
-  body{
-    min-height:100dvh;
-    background:#080a09;
-  }
-  .card{
-    width:100%;
-    border:0;
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-    backdrop-filter:none;
-    padding:28px 22px;
-  }
-  .spin{
-    width:44px;
-    height:44px;
-  }
-  .name{
-    font-size:30px;
-  }
-}
-</style>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
-<div class="card">
-  <div class="spin"></div>
-  <div class="name">checking</div>
-  <div class="small">Verifying your browser before entering.<br>Please wait a moment.</div>
+
+<div id="particles"></div>
+
+<div class="container">
+
+    <img src="assets/avatar.png" class="avatar">
+
+    <h1 id="username">Your Name</h1>
+
+    <p id="bio"></p>
+
+    <div class="socials">
+
+        <a href="#"><i class="fab fa-discord"></i></a>
+
+        <a href="#"><i class="fab fa-github"></i></a>
+
+        <a href="#"><i class="fab fa-facebook"></i></a>
+
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+
+    </div>
+
+    <button id="music">
+        <i class="fa-solid fa-music"></i>
+    </button>
+
 </div>
 
-<script>
-(async()=>{
-  const token="1784307643.EaxcrAYxmkXynsz2.16.2.300.b_d5osHyFkDUpLJoJy7p0VC0t9sk4xcknvWQNw6xM6w";
-  const bits=16;
-  const ret="/";
-  const yieldEvery=128;
-  const yieldDelay=4;
-  const maxProof=4194304;
-  const minAgeMs=2000;
-  const encoder=new TextEncoder();
-  const started=Date.now();
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 
-  function ok(bytes,b){
-    let left=b;
-    for(const x of bytes){
-      if(left<=0) return true;
-      if(left>=8){
-        if(x!==0) return false;
-        left-=8;
-      }else{
-        return (x & (0xff << (8-left))) === 0;
-      }
-    }
-    return true;
-  }
+<script src="script.js"></script>
 
-  let n=0;
-  let batch=0;
-  while(true){
-    const d=await crypto.subtle.digest("SHA-256",encoder.encode(token+"."+n));
-    if(ok(new Uint8Array(d),bits)) break;
-    n++;
-    batch++;
-    if(n>maxProof){
-      location.reload();
-      return;
-    }
-    if(batch>=yieldEvery){
-      batch=0;
-      await new Promise(r=>setTimeout(r,yieldDelay));
-    }
-  }
-
-  const wait=minAgeMs-(Date.now()-started);
-  if(wait>0) await new Promise(r=>setTimeout(r,wait));
-
-  location.replace(
-    "/__bio_waf_verify?t="+encodeURIComponent(token)+
-    "&n="+encodeURIComponent(n)+
-    "&r="+encodeURIComponent(ret)
-  );
-})();
-</script>
-
-<noscript>
-  <div style="position:fixed;bottom:24px;left:0;right:0;text-align:center;color:#aaa">
-    JavaScript is required.
-  </div>
-</noscript>
-<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" data-cf-beacon="{" version":"2024.11.0","token":"6c5cd99eccb04fff8143668fa0947cd0","server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
-
-</body></html>
+</body>
+</html>
