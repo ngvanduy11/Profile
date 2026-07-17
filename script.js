@@ -46,36 +46,24 @@ let playing = false;
 const enterScreen = document.getElementById("enterScreen");
 
 async function enterSite() {
-
     enterScreen.classList.add("hide");
 
     try {
         await music.play();
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         playing = true;
-    } catch (e) {}
-
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-enterScreen.addEventListener("click", enterSite);
+enterScreen.onclick = enterSite;
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         enterSite();
     }
 });
-btn.onclick = () => {
-
-    if (playing) {
-        music.pause();
-        btn.innerHTML = '<i class="fa-solid fa-music"></i>';
-    } else {
-        music.play();
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    }
-
-    playing = !playing;
-};
 
 async function updatePresence() {
 
