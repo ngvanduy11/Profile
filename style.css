@@ -31,24 +31,24 @@ body::before{
 
 .container{
     width:340px;
-    padding:30px;
+    padding:32px;
     border-radius:28px;
 
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.05)
+    );
 
-    backdrop-filter:blur(22px);
-    -webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.18);
 
-    text-align:center;
+    backdrop-filter:blur(24px);
 
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.35),
+        inset 0 0 1px rgba(255,255,255,.5);
 
     transition:.35s;
-}
-
-.container:hover{
-    transform:translateY(-6px);
 }
 
 .avatar{
