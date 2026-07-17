@@ -19,7 +19,27 @@ typing();
 
 const music = new Audio("assets/music.mp3");
 music.loop = true;
+const enterScreen = document.getElementById("enterScreen");
 
+async function enterSite() {
+
+    enterScreen.classList.add("hide");
+
+    try {
+        await music.play();
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        playing = true;
+    } catch (e) {}
+
+}
+
+enterScreen.addEventListener("click", enterSite);
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        enterSite();
+    }
+});
 const btn = document.getElementById("music");
 
 let playing = false;
@@ -132,9 +152,4 @@ tsParticles.load("particles", {
         }
 
     }
-});
-window.addEventListener("load", () => {
-
-    audio.play().catch(() => {});
-
 });
