@@ -33,25 +33,28 @@ body::before{
     position:relative;
     z-index:2;
 
-    width:300px;
-    padding:24px;
-    border-radius:28px;
+    width:330px;
+    padding:28px;
+    border-radius:30px;
 
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.12),
-        rgba(255,255,255,.05)
-    );
+    background:rgba(255,255,255,.08);
 
-    border:1px solid rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.2);
 
-    backdrop-filter:blur(24px);
+    backdrop-filter:blur(30px);
 
     box-shadow:
-        0 10px 40px rgba(0,0,0,.35),
-        inset 0 0 1px rgba(255,255,255,.5);
+        0 0 40px rgba(0,0,0,.35),
+        0 0 80px rgba(255,255,255,.08);
 
     transition:.35s;
+}
+
+.container:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.4),
+        0 0 90px rgba(255,255,255,.15);
 }
 
 .avatar{
@@ -60,13 +63,34 @@ body::before{
     border-radius:50%;
     object-fit:cover;
 
-    border:3px solid rgba(255,255,255,.9);
-
-    box-shadow:0 0 25px rgba(255,255,255,.35);
+    border:3px solid rgba(255,255,255,.95);
 
     transition:.35s;
 
-    animation:avatarGlow 3s infinite alternate;
+    animation:rgbGlow 4s linear infinite;
+}
+
+.avatar:hover{
+    transform:scale(1.08);
+    filter:brightness(1.1);
+}
+
+@keyframes rgbGlow{
+    0%{
+        box-shadow:0 0 18px #00e5ff;
+    }
+    25%{
+        box-shadow:0 0 22px #7d5fff;
+    }
+    50%{
+        box-shadow:0 0 26px #ff2d95;
+    }
+    75%{
+        box-shadow:0 0 22px #00ff95;
+    }
+    100%{
+        box-shadow:0 0 18px #00e5ff;
+    }
 }
 
 .avatar:hover{
