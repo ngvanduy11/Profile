@@ -133,3 +133,31 @@ tsParticles.load("particles", {
 
     }
 });
+const audio = new Audio("assets/music.mp3");
+
+audio.loop = true;
+
+const musicBtn = document.getElementById("music");
+
+let playing = false;
+
+musicBtn.addEventListener("click", async () => {
+
+    if (!playing) {
+        await audio.play();
+        musicBtn.innerHTML =
+        '<i class="fa-solid fa-pause"></i>';
+    } else {
+        audio.pause();
+        musicBtn.innerHTML =
+        '<i class="fa-solid fa-music"></i>';
+    }
+
+    playing = !playing;
+
+});
+window.addEventListener("load", () => {
+
+    audio.play().catch(() => {});
+
+});
