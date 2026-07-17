@@ -1,94 +1,147 @@
-// ===== Typewriter =====
+// =========================
+// TYPEWRITER
+// =========================
 
-const text="Welcome to my profile";
+const text = "Welcome to my profile ✨";
 
-let i=0;
+let i = 0;
 
-function typing(){
-
-    if(i<text.length){
-
-        document.getElementById("bio").innerHTML+=text.charAt(i);
-
+function typing() {
+    if (i < text.length) {
+        document.getElementById("bio").innerHTML += text.charAt(i);
         i++;
-
-        setTimeout(typing,50);
-
+        setTimeout(typing, 50);
     }
-
 }
 
 typing();
 
 
-// ===== Music =====
+// =========================
+// MUSIC
+// =========================
 
-const audio=new Audio("assets/music.mp3");
+const audio = new Audio("assets/music.mp3");
+audio.loop = true;
 
-audio.loop=true;
+let playing = false;
 
-let playing=false;
+document.getElementById("music").onclick = () => {
 
-document.getElementById("music").onclick=()=>{
-
-    if(playing){
+    if (playing) {
 
         audio.pause();
 
-    }else{
+    } else {
 
         audio.play();
 
     }
 
-    playing=!playing;
+    playing = !playing;
 
 };
 
 
-// ===== Particles =====
+// =========================
+// PARTICLES
+// =========================
 
-tsParticles.load("particles",{
+tsParticles.load("particles", {
+
+    background: {
+        color: "transparent"
+    },
+
+    fpsLimit: 60,
+
+    particles: {
+
+        number: {
+            value: 80
+        },
+
+        color: {
+            value: "#ffffff"
+        },
+
+        opacity: {
+            value: 0.3
+        },
+
+        size: {
+            value: 2
+        },
+
+        move: {
+            enable: true,
+            speed: 1
+        },
+
+        links: {
+            enable: true,
+            color: "#ffffff",
+            opacity: 0.15
+        }
+
+    }
+
+});
+
+
+// =========================
+// DISCORD PRESENCE
+// =========================
+
 const USER_ID = "257851469531840514";
 
-async function loadDiscord(){
+async function loadDiscord() {
 
-    try{
+    try {
 
         const res = await fetch(
             `https://api.lanyard.rest/v1/users/${USER_ID}`
         );
 
-        const data = (await res.json()).data;
+        const json = await res.json();
+
+        if (!json.success) return;
+
+        const data = json.data;
 
         const dot = document.getElementById("dot");
         const status = document.getElementById("statusText");
         const activity = document.getElementById("activity");
 
-        status.innerText = data.discord_status;
+        status.textContent = data.discord_status.toUpperCase();
 
-        if(data.discord_status==="online")
-            dot.style.background="#43b581";
+        const colors = {
 
-        if(data.discord_status==="idle")
-            dot.style.background="#faa61a";
+            online: "#43b581",
+            idle: "#faa61a",
+            dnd: "#f04747",
+            offline: "#747f8d"
 
-        if(data.discord_status==="dnd")
-            dot.style.background="#f04747";
+        };
 
-        if(data.discord_status==="offline")
-            dot.style.background="gray";
+        dot.style.background =
+            colors[data.discord_status] || "#747f8d";
 
-        if(data.activities.length){
+        if (data.activities.length > 0) {
 
-            activity.innerText =
-            data.activities[0].name;
+            activity.textContent =
+                data.activities[0].name;
+
+        } else {
+
+            activity.textContent =
+                "Không có hoạt động";
 
         }
 
-    }catch(e){
+    } catch (err) {
 
-        console.log(e);
+        console.error(err);
 
     }
 
@@ -96,42 +149,4 @@ async function loadDiscord(){
 
 loadDiscord();
 
-setInterval(loadDiscord,15000);
-    background:{
-        color:"transparent"
-    },
-
-    fpsLimit:60,
-
-    particles:{
-
-        number:{
-            value:80
-        },
-
-        color:{
-            value:"#ffffff"
-        },
-
-        opacity:{
-            value:0.3
-        },
-
-        size:{
-            value:2
-        },
-
-        move:{
-            enable:true,
-            speed:1
-        },
-
-        links:{
-            enable:true,
-            color:"#ffffff",
-            opacity:0.15
-        }
-
-    }
-
-});
+setInterval(loadDiscord, 15000);
