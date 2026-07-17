@@ -205,3 +205,52 @@ body::before{
 }
 
 }
+.presence{
+
+    margin-top:20px;
+
+    background:rgba(255,255,255,.05);
+
+    padding:15px;
+
+    border-radius:15px;
+
+}
+
+.status{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+#dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:gray;
+
+}
+
+#activity{
+
+    margin-top:10px;
+
+    color:#bbb;
+
+    font-size:14px;
+
+}
