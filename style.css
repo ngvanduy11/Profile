@@ -252,15 +252,9 @@ body::before{
 }
 
 #enterScreen h1{
-    color:#fff;
-    font-size:48px;
+    font-size:30px;
     font-weight:700;
-    letter-spacing:3px;
-    margin:0;
-
-    text-shadow:0 0 20px rgba(255,255,255,.6);
-
-    animation:glow 2s infinite;
+    letter-spacing:2px;
 }
 
 #enterScreen p{
