@@ -124,38 +124,44 @@ body::before{
 
 }
 
-.socials a{
-
-    width:55px;
-
-    height:55px;
-
+.socials{
     display:flex;
-
     justify-content:center;
+    align-items:center;
+    gap:18px;
+    margin-top:25px;
+}
 
+.socials a{
+    width:58px;
+    height:58px;
+    display:flex;
+    justify-content:center;
     align-items:center;
 
     border-radius:50%;
+    text-decoration:none;
 
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 
-    color:white;
+    border:1px solid rgba(255,255,255,.15);
 
-    font-size:23px;
+    color:#fff;
+    font-size:28px;
 
-    transition:.3s;
-
+    transition:.3s ease;
 }
 
 .socials a:hover{
+    transform:translateY(-6px) scale(1.08);
+    background:rgba(255,255,255,.2);
+    box-shadow:0 0 20px rgba(255,255,255,.35);
+}
 
-    background:white;
-
-    color:black;
-
-    transform:translateY(-8px);
-
+.socials a:active{
+    transform:scale(.95);
 }
 
 #music{
