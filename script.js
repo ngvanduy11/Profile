@@ -1,112 +1,59 @@
-// ==========================
-// TYPEWRITER
-// ==========================
+const USER_ID = "257851469531840514";
 
-const bio = "vanduycoder";
+const bio =
+"Developer • Discord • Python • Web";
+
 const bioElement = document.getElementById("bio");
 
-let index = 0;
+let i = 0;
 
-function typeWriter() {
-    if (index < bio.length) {
-        bioElement.textContent += bio.charAt(index);
-        index++;
-        setTimeout(typeWriter, 50);
+function typing() {
+    if (i < bio.length) {
+        bioElement.innerHTML += bio.charAt(i);
+        i++;
+        setTimeout(typing, 35);
     }
 }
 
-typeWriter();
+typing();
 
-// ==========================
-// MUSIC
-// ==========================
+const music = new Audio("assets/music.mp3");
+music.loop = true;
 
-const musicBtn = document.getElementById("music");
-const audio = new Audio("assets/music.mp3");
-audio.loop = true;
+const btn = document.getElementById("music");
 
 let playing = false;
 
-musicBtn.addEventListener("click", () => {
+btn.onclick = () => {
+
     if (playing) {
-        audio.pause();
+        music.pause();
+        btn.innerHTML = '<i class="fa-solid fa-music"></i>';
     } else {
-        audio.play().catch(() => {});
+        music.play();
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
     }
 
     playing = !playing;
-});
+};
 
-// ==========================
-// PARTICLES
-// ==========================
-
-if (typeof tsParticles !== "undefined") {
-    tsParticles.load({
-        id: "particles",
-        options: {
-            background: {
-                color: {
-                    value: "transparent"
-                }
-            },
-            fpsLimit: 60,
-            particles: {
-                number: {
-                    value: 80
-                },
-                color: {
-                    value: "#ffffff"
-                },
-                links: {
-                    enable: true,
-                    color: "#ffffff",
-                    opacity: 0.15
-                },
-                move: {
-                    enable: true,
-                    speed: 1
-                },
-                opacity: {
-                    value: 0.3
-                },
-                size: {
-                    value: 2
-                }
-            }
-        }
-    });
-}
-
-// ==========================
-// DISCORD PRESENCE
-// ==========================
-
-const USER_ID = "257851469531840514";
-
-async function loadDiscord() {
-
-    const dot = document.getElementById("dot");
-    const status = document.getElementById("statusText");
-    const activity = document.getElementById("activity");
+async function updatePresence() {
 
     try {
 
-        const response = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
+        const res = await fetch(
+            `https://api.lanyard.rest/v1/users/${USER_ID}`
+        );
 
-        const json = await response.json();
+        const json = await res.json();
 
-        console.log(json);
-
-        if (!json.success) {
-
-            status.textContent = "Offline";
-            activity.textContent = "";
-            return;
-
-        }
+        if (!json.success) return;
 
         const data = json.data;
+
+        const dot = document.getElementById("dot");
+        const status = document.getElementById("statusText");
+        const activity = document.getElementById("activity");
 
         const colors = {
             online: "#43b581",
@@ -115,37 +62,74 @@ async function loadDiscord() {
             offline: "#747f8d"
         };
 
-        dot.style.background = colors[data.discord_status] || "#747f8d";
+        dot.style.background =
+            colors[data.discord_status] || "#747f8d";
 
-        status.textContent = data.discord_status.toUpperCase();
+        status.innerText =
+            data.discord_status.toUpperCase();
 
-        if (data.listening_to_spotify && data.spotify) {
+        if (data.spotify) {
 
-            activity.textContent =
-                `🎵 ${data.spotify.song} • ${data.spotify.artist}`;
+            activity.innerHTML =
+                `🎵 ${data.spotify.song}<br>${data.spotify.artist}`;
 
         } else if (data.activities.length > 0) {
 
-            activity.textContent = data.activities[0].name;
+            activity.innerHTML =
+                `🎮 ${data.activities[0].name}`;
 
         } else {
 
-            activity.textContent = "Không có hoạt động";
+            activity.innerHTML =
+                "Không có hoạt động";
 
         }
 
-    } catch (err) {
+    } catch (e) {
 
-        console.error(err);
-
-        status.textContent = "Lỗi";
-
-        activity.textContent = "Không kết nối được API";
+        console.log(e);
 
     }
 
 }
 
-loadDiscord();
+updatePresence();
 
-setInterval(loadDiscord, 15000);
+setInterval(updatePresence, 5000);
+
+tsParticles.load("particles", {
+    background: {
+        color: {
+            value: "transparent"
+        }
+    },
+
+    particles: {
+
+        number: {
+            value: 70
+        },
+
+        color: {
+            value: "#ffffff"
+        },
+
+        opacity: {
+            value: 0.25
+        },
+
+        size: {
+            value: 2
+        },
+
+        move: {
+            enable: true,
+            speed: 1
+        },
+
+        links: {
+            enable: false
+        }
+
+    }
+});
