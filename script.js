@@ -170,3 +170,14 @@ VanillaTilt.init(document.querySelector(".container"),{
     "max-glare":0.2,
     scale:1.03
 });
+const card=document.querySelector(".container");
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+card.style.setProperty("--x",`${e.clientX-rect.left}px`);
+
+card.style.setProperty("--y",`${e.clientY-rect.top}px`);
+
+});
