@@ -33,13 +33,7 @@ async function enterSite() {
 
 }
 
-enterScreen.addEventListener("click", enterSite);
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        enterSite();
-    }
-});
 const btn = document.getElementById("music");
 
 let playing = false;
