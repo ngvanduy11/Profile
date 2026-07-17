@@ -95,13 +95,24 @@ body::before{
 }
 
 .status{
-    .avatar::after{
-    content:"";
-    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    color:white;
 }
 
 .avatar{
     animation:avatarGlow 3s infinite alternate;
+}
+
+@keyframes avatarGlow{
+    from{
+        box-shadow:0 0 20px rgba(255,255,255,.25);
+    }
+    to{
+        box-shadow:0 0 45px rgba(255,255,255,.55);
+    }
 }
 
 @keyframes avatarGlow{
@@ -215,6 +226,8 @@ body::before{
 @media(max-width:450px){
 
 .container{
+    position:relative;
+}
     width:92%;
     padding:26px;
 }
