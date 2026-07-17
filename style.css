@@ -47,51 +47,30 @@ z-index:-1;
 }
 
 .container{
-    position: relative;
-    z-index: 2;
-
-    width: 330px;
-    padding: 28px;
-
-    border-radius: 30px;
-
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.35),
-        0 0 80px rgba(255,255,255,.08);
-
-    overflow: hidden;
-
-    animation: fade .8s ease;
-    transition: all .35s ease;
-}
-.container::after{
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -120%;
-
-    width: 60%;
-    height: 200%;
-
     background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.25),
-        transparent
+        180deg,
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.05)
     );
 
-    transform: rotate(25deg);
+    border: 1px solid rgba(255,255,255,.12);
 
-    animation: cardShine 7s ease-in-out infinite;
-opacity: .8;
+    backdrop-filter: blur(30px);
+}
+.container.container::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:30px;
 
-    pointer-events: none;
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.12) 0%,
+        transparent 30%,
+        transparent 100%
+    );
+
+    pointer-events:none;
 }
 
 
