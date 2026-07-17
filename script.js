@@ -2,7 +2,7 @@
 // TYPEWRITER
 // ==========================
 
-const bio = "Welcome to my profile ✨";
+const bio = "vanduycoder";
 const bioElement = document.getElementById("bio");
 
 let index = 0;
