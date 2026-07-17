@@ -163,3 +163,10 @@ tsParticles.load("particles", {
 
     }
 });
+VanillaTilt.init(document.querySelector(".container"),{
+    max:12,
+    speed:500,
+    glare:true,
+    "max-glare":0.2,
+    scale:1.03
+});
