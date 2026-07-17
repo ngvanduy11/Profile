@@ -29,25 +29,21 @@ body::before{
     z-index:-2;
 }
 
-.container{
-    position:relative;
-    z-index:2;
-
-    width:330px;
-    padding:28px;
-    border-radius:30px;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.2);
-
-    backdrop-filter:blur(30px);
-
-    box-shadow:
-        0 0 40px rgba(0,0,0,.35),
-        0 0 80px rgba(255,255,255,.08);
-
-    transition:.35s;
+.container::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:32px;
+    background:linear-gradient(
+        45deg,
+        #00e5ff,
+        #7d5fff,
+        #ff2d95,
+        #00ff95
+    );
+    z-index:-1;
+    filter:blur(18px);
+    opacity:.35;
 }
 
 .container:hover{
