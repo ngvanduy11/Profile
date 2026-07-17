@@ -98,16 +98,35 @@ background-position:400%;
 }
 
 .avatar{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    object-fit:cover;
 
-    border:3px solid rgba(255,255,255,.95);
+position:relative;
 
-    transition:.35s;
+overflow:hidden;
 
-    animation:rgbGlow 4s linear infinite;
+}
+
+.avatar::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+
+left:-40%;
+
+width:50%;
+
+height:300%;
+
+background:
+
+rgba(255,255,255,.35);
+
+transform:rotate(25deg);
+
+animation:shine 3s infinite;
+
 }
 
 .avatar:hover{
@@ -221,9 +240,18 @@ background-position:400%;
     color:#ffffff;
 }
 
-.socials.socials a:hover{
-    transform:translateY(-6px) scale(1.12);
-    box-shadow:0 0 18px white;
+.socials a{
+
+transition:.3s;
+
+}
+
+.socials a:hover{
+
+transform:translateY(-7px) scale(1.15);
+
+filter:drop-shadow(0 0 10px white);
+
 }
 
 .socials a i{
@@ -359,6 +387,15 @@ transform:translate(-10%,-10%);
 100%{
 
 transform:translate(10%,10%);
+
+}
+
+}
+@keyframes shine{
+
+100%{
+
+left:160%;
 
 }
 
