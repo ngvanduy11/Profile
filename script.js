@@ -1,8 +1,6 @@
 const USER_ID = "257851469531840514";
 
-const bio =
-"Developer • Discord • Python • Web";
-
+const bio = "Developer • Discord • Python • Web";
 const bioElement = document.getElementById("bio");
 
 let i = 0;
@@ -19,44 +17,52 @@ typing();
 
 const music = new Audio("assets/music.mp3");
 music.loop = true;
-const enterScreen = document.getElementById("enterScreen");
-
-async function enterSite() {
-
-    enterScreen.classList.add("hide");
-
-    try {
-        await music.play();
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        playing = true;
-    } catch (e) {}
-
-}
-
 
 const btn = document.getElementById("music");
-
-let playing = false;
 const enterScreen = document.getElementById("enterScreen");
 
+let playing = false;
+
 async function enterSite() {
+
+    if (enterScreen.classList.contains("hide")) return;
+
     enterScreen.classList.add("hide");
+
+    setTimeout(() => {
+        enterScreen.remove();
+    }, 800);
 
     try {
         await music.play();
         playing = true;
         btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
     } catch (err) {
-        console.error(err);
+        console.log(err);
     }
+
 }
 
-enterScreen.onclick = enterSite;
+enterScreen.addEventListener("click", enterSite);
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         enterSite();
     }
+});
+
+btn.addEventListener("click", async () => {
+
+    if (playing) {
+        music.pause();
+        btn.innerHTML = '<i class="fa-solid fa-music"></i>';
+    } else {
+        await music.play();
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    }
+
+    playing = !playing;
+
 });
 
 async function updatePresence() {
@@ -95,7 +101,10 @@ async function updatePresence() {
             activity.innerHTML =
                 `🎵 ${data.spotify.song}<br>${data.spotify.artist}`;
 
-        } else if (data.activities.length > 0) {
+        } else if (
+            data.activities &&
+            data.activities.length > 0
+        ) {
 
             activity.innerHTML =
                 `🎮 ${data.activities[0].name}`;
@@ -107,16 +116,15 @@ async function updatePresence() {
 
         }
 
-    } catch (e) {
+    } catch (err) {
 
-        console.log(e);
+        console.log(err);
 
     }
 
 }
 
 updatePresence();
-
 setInterval(updatePresence, 5000);
 
 tsParticles.load("particles", {
