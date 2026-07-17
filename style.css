@@ -232,26 +232,61 @@ body::before{
 #enterScreen{
     position:fixed;
     inset:0;
+    z-index:9999;
+
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
-    background:#000;
-    z-index:9999;
-    cursor:pointer;
-    transition:opacity .6s ease;
+
+    background:rgba(0,0,0,.88);
+    backdrop-filter:blur(18px);
+
+    transition:all .8s ease;
 }
 
 #enterScreen.hide{
     opacity:0;
-    pointer-events:none;
+    visibility:hidden;
+    transform:scale(1.08);
 }
 
 #enterScreen h1{
     color:#fff;
-    font-size:34px;
-    font-family:'Outfit',sans-serif;
-    letter-spacing:2px;
-    animation:pulse 1.5s infinite;
+    font-size:48px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin:0;
+
+    text-shadow:0 0 20px rgba(255,255,255,.6);
+
+    animation:glow 2s infinite;
+}
+
+#enterScreen p{
+    margin-top:18px;
+    color:#aaa;
+    font-size:15px;
+    letter-spacing:1px;
+
+    animation:blink 1.4s infinite;
+}
+
+@keyframes glow{
+    0%,100%{
+        text-shadow:0 0 10px rgba(255,255,255,.3);
+    }
+    50%{
+        text-shadow:
+        0 0 25px #fff,
+        0 0 45px #fff;
+    }
+}
+
+@keyframes blink{
+    50%{
+        opacity:.35;
+    }
 }
 
 @keyframes pulse{
