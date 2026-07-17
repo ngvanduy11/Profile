@@ -103,12 +103,10 @@ body::before{
 }
 
 #username{
-    margin-top:18px;
-    color:white;
-    font-size:30px;
-    font-weight:700;
+    text-shadow:
+        0 0 8px white,
+        0 0 20px rgba(255,255,255,.4);
 }
-
 #bio{
     margin-top:10px;
     color:#d8d8d8;
@@ -179,11 +177,9 @@ body::before{
     color:#ffffff;
 }
 
-.socials a:hover{
-    background:#ffffff;
-    color:#111111;
-    transform:translateY(-4px);
-    box-shadow:0 8px 20px rgba(255,255,255,.25);
+.socials.socials a:hover{
+    transform:translateY(-6px) scale(1.12);
+    box-shadow:0 0 18px white;
 }
 
 .socials a i{
