@@ -15,12 +15,29 @@ body{
 }
 
 body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    backdrop-filter:blur(8px);
-    z-index:-1;
+
+content:"";
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
+background:
+
+radial-gradient(circle,#7d5fff44,transparent),
+
+radial-gradient(circle,#00d9ff33,transparent),
+
+radial-gradient(circle,#ff2d9530,transparent);
+
+filter:blur(120px);
+
+animation:aurora 12s infinite alternate;
+
+z-index:-2;
+
 }
 
 #particles{
@@ -33,20 +50,46 @@ body::before{
     overflow:hidden;
 }
 
-.container::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-    radial-gradient(
-        circle at var(--x) var(--y),
-        rgba(255,255,255,.18),
-        transparent 180px
-    );
+.container::before{
 
-    pointer-events:none;
+content:"";
+
+position:absolute;
+
+inset:-2px;
+
+border-radius:30px;
+
+background:linear-gradient(
+90deg,
+#00e5ff,
+#8f5fff,
+#ff2d95,
+#00ff90,
+#00e5ff
+);
+
+background-size:400%;
+
+animation:borderMove 6s linear infinite;
+
+z-index:-1;
+
+filter:blur(12px);
+
 }
 
+@keyframes borderMove{
+
+0%{
+background-position:0%;
+}
+
+100%{
+background-position:400%;
+}
+
+}
 .container:hover{
     transform:translateY(-6px);
     box-shadow:
@@ -304,4 +347,19 @@ body::before{
     50%{
         opacity:1;
     }
+}
+@keyframes aurora{
+
+0%{
+
+transform:translate(-10%,-10%);
+
+}
+
+100%{
+
+transform:translate(10%,10%);
+
+}
+
 }
